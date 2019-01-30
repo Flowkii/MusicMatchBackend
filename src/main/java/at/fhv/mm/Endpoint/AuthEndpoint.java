@@ -18,7 +18,7 @@ public class AuthEndpoint {
 		// End of user code
 	}
 	
-	@org.springframework.web.bind.annotation.PostMapping("invalid")
+	@org.springframework.web.bind.annotation.PostMapping("/logout")
 	public void logout(@org.springframework.web.bind.annotation.RequestParam("token") String token) throws Exception {
 		// Start of user code logout
 		 at.fhv.mm.handlers.AuthHandler.getInstance().logout(token);
