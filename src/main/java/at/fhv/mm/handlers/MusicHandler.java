@@ -45,11 +45,6 @@ public class MusicHandler {
 
 		System.out.println("test");
 		if(!(artist==null || title == null || artist.equals("") || title.equals(""))) {
-
-			String apiURL = "https://api.musixmatch.com/ws/1.1/matcher.lyrics.get?format=jsonp&callback=callback";
-			String trackPart = "&q_track="+ title;
-			String artistPart = "&q_artist="+ artist;
-			String apiKey = "&apikey=d4ba61ac04e32ad791c1f02fe83a0240";
 			URIBuilder builder = new URIBuilder();
 			builder.setScheme("https");
 			builder.setHost("api.musixmatch.com");
@@ -82,7 +77,7 @@ public class MusicHandler {
 				LyricsResult lyricResult = new LyricsResult();
 				lyricResult.setLyrics(lyric);
 
-				HistoryHandler.getInstance().addHistory(token, artist+" "+title, lyricResult);
+				HistoryHandler.getInstance().addHistory(token, artist+"/"+title, lyricResult);
 				return lyricResult;
 			}
 		}

@@ -1,4 +1,4 @@
-package at.fhv.mm.endpoint;
+package at.fhv.mm.Endpoint;
 
 // Start of user code (user defined imports)
 
