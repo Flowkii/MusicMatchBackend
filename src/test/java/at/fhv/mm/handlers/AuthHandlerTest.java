@@ -53,6 +53,7 @@ public class AuthHandlerTest {
         Assert.assertNotNull(token);
         Assert.assertNotEquals("", token);
 
+
         User user = handler.users.get(token);
         Assert.assertEquals("user@test.com", user.getEmail());
         Assert.assertNotNull(user.getHistory());
