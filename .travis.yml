@@ -1,0 +1,23 @@
+jobs:
+  include:
+    - stage: build application
+      script:
+        - mvn deploy
+    - stage: static code analysis
+      addons:
+        sonarcloud:
+          organization: Flowkii
+          token: $SONAR_TOKEN
+      script:
+        - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
+    - stage: deploy to staging
+      script: skip
+      deploy: &heroku
+        provider: heroku
+        app: musicmatch-backend-staging
+        api_key: $HEROKU_API_KEY
+    - stage: deploy to production
+      script: skip
+      deploy:
+        <<: *heroku
+        app: musicmatch-backend
