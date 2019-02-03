@@ -18,6 +18,17 @@
         <java.version>1.8</java.version>
     </properties>
 
+    <distributionManagement>
+        <repository>
+            <id>packagecloud-music-match</id>
+            <url>packagecloud+https://packagecloud.io/mischi33/musicmatch</url>
+        </repository>
+        <snapshotRepository>
+            <id>packagecloud-music-match</id>
+            <url>packagecloud+https://packagecloud.io/mischi33/musicmatch</url>
+        </snapshotRepository>
+    </distributionManagement>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
