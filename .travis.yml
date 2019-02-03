@@ -1,15 +1,10 @@
 language: java
 jobs:
   include:
-    - stage: build application
-      install:
-        - cp .travis.settings.xml $HOME/.m2/settings.xml
-      script:
-        - mvn deploy
     - stage: static code analysis
       addons:
         sonarcloud:
-          organization: Flowkii-github
+          organization: flowkii-github
           token: $SONAR_TOKEN
       script:
         - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
