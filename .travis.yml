@@ -11,9 +11,9 @@ jobs:
         - cd ..
         - "git clone https://github.com/mischi33/MusicMatchBackendDocs.git"
         - rm -rf docs/generated/jacoco-ut docs/generated/jacoco-it docs/generated/apidocs
-        - cp -r application/target/site/jacoco-ut docs/generated/
-        - cp -r application/target/site/jacoco-it docs/generated/
-        - cp -r application/target/site/apidocs docs/generated/
+        - cp -r mm/target/site/jacoco-ut docs/generated/
+        - cp -r mm/target/site/jacoco-it docs/generated/
+        - cp -r mm/target/site/apidocs docs/generated/
         - cd docs/generated
         - git add --all
         - git commit -am "update documentation"
