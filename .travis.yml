@@ -1,12 +1,6 @@
 language: java
 jobs:
   include:
-    - stage: deploy to staging
-      script: skip
-      deploy: &heroku
-        provider: heroku
-        app: musicmatch-backend-staging
-        api_key: $HEROKU_API_KEY
     - stage: automatic performance tests on staging
       script:
         - cd ..
@@ -17,11 +11,7 @@ jobs:
         - "git clone https://github.com/mischi33/MusicMatchBackendDocs.git"
         - rm -rf MusicMatchBackendDocs/generated/jmeter
         - cp -r MusicMatchBackendTest/target/jmeter/reports/performance* MusicMatchBackendDocs/generated/jmeter
+        - cd MusicMatchBackendDocs
         - git add --all
         - git commit -am "update jmeter documentation"
         - git push "https://${TRAVIS_GITHUB_TOKEN}@github.com/mischi33/MusicMatchBackendDocs.git" master
-    - stage: deploy to production
-      script: skip
-      deploy:
-        <<: *heroku
-        app: musicmatch-backend
