@@ -10,9 +10,8 @@ jobs:
         - mvn org.jacoco:jacoco-maven-plugin:prepare-agent javadoc:javadoc verify sonar:sonar
         - cd ..
         - "git clone https://github.com/mischi33/MusicMatchBackendDocs.git"
-        - rm -rf MusicMatchBackendDocs/generated/jacoco-ut docs/generated/jacoco-it docs/generated/apidocs
+        - rm -rf MusicMatchBackendDocs/generated/jacoco-ut docs/generated/apidocs
         - cp -r MusicMatchBackend/target/site/jacoco-ut MusicMatchBackendDocs/generated/
-        - cp -r MusicMatchBackend/target/site/jacoco-it MusicMatchBackendDocs/generated/
         - cp -r MusicMatchBackend/target/site/apidocs MusicMatchBackendDocs/generated/
         - cd MusicMatchBackendDocs/generated
         - git add --all
