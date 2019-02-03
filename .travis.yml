@@ -9,7 +9,7 @@ jobs:
     - stage: static code analysis
       addons:
         sonarcloud:
-          organization: Flowkii
+          organization: Flowkii-github
           token: $SONAR_TOKEN
       script:
         - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar
