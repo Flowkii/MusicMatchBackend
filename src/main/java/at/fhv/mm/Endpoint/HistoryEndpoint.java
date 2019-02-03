@@ -2,8 +2,10 @@ package at.fhv.mm.Endpoint;
 
 // Start of user code (user defined imports)
 
-// End of user code
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+// End of user code
+@CrossOrigin
 @org.springframework.web.bind.annotation.RestController
 public class HistoryEndpoint {
 	// Start of user code (user defined attributes)
