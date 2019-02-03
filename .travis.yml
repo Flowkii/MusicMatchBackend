@@ -1,6 +1,33 @@
 language: java
 jobs:
   include:
+    - stage: build application
+      install:
+        - cp .travis.settings.xml $HOME/.m2/settings.xml
+      script:
+        - mvn deploy
+    - stage: static code analysis
+      addons:
+        sonarcloud:
+          organization: flowkii-github
+          token: $SONAR_TOKEN
+      script:
+        - mvn org.jacoco:jacoco-maven-plugin:prepare-agent javadoc:javadoc verify sonar:sonar
+        - cd ..
+        - "git clone https://github.com/mischi33/MusicMatchBackendDocs.git"
+        - rm -rf MusicMatchBackendDocs/generated/jacoco-ut MusicMatchBackendDocs/generated/apidocs
+        - cp -r MusicMatchBackend/target/site/jacoco-ut MusicMatchBackendDocs/generated/
+        - cp -r MusicMatchBackend/target/site/apidocs MusicMatchBackendDocs/generated/
+        - cd MusicMatchBackendDocs/generated
+        - git add --all
+        - git commit -am "update api+ut documentation"
+        - git push "https://${TRAVIS_GITHUB_TOKEN}@github.com/mischi33/MusicMatchBackendDocs.git" master
+    - stage: deploy to staging
+      script: skip
+      deploy: &heroku
+          provider: heroku
+          app: musicmatch-backend-staging
+          api_key: $HEROKU_API_KEY
     - stage: automatic performance tests on staging
       script:
         - cd ..
@@ -15,3 +42,8 @@ jobs:
         - git add --all
         - git commit -am "update jmeter documentation"
         - git push "https://${TRAVIS_GITHUB_TOKEN}@github.com/mischi33/MusicMatchBackendDocs.git" master
+    - stage: deploy to production
+      script: skip
+      deploy:
+        <<: *heroku
+        app: musicmatch-backend
