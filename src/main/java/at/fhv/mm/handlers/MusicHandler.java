@@ -44,7 +44,7 @@ public class MusicHandler {
 		}
 
 		System.out.println("test");
-		if(!(artist==null || title == null || artist.equals("") || title.equals(""))) {
+		if(!(title == null || title.equals(""))) {
 			URIBuilder builder = new URIBuilder();
 			builder.setScheme("https");
 			builder.setHost("api.musixmatch.com");
